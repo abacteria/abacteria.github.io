@@ -4,13 +4,25 @@
   
     
     <entry>
-      <title>Hello World</title>
-      <link href="/2022/05/03/hello-world/"/>
-      <url>/2022/05/03/hello-world/</url>
+      <title>hexo博客部署时提示use a personal access token instead的解决方法</title>
+      <link href="/2022/05/04/hexo%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E6%97%B6%E6%8F%90%E7%A4%BAuse-a-personal-access-token-instead%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"/>
+      <url>/2022/05/04/hexo%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E6%97%B6%E6%8F%90%E7%A4%BAuse-a-personal-access-token-instead%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</url>
       
-        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="quick-start"><a class="markdownIt-Anchor" href="#quick-start"></a> Quick Start</h2><h3 id="create-a-new-post"><a class="markdownIt-Anchor" href="#create-a-new-post"></a> Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="run-server"><a class="markdownIt-Anchor" href="#run-server"></a> Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="generate-static-files"><a class="markdownIt-Anchor" href="#generate-static-files"></a> Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="deploy-to-remote-sites"><a class="markdownIt-Anchor" href="#deploy-to-remote-sites"></a> Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+        <content type="html"><![CDATA[<h1 id="问题"><a class="markdownIt-Anchor" href="#问题"></a> 问题</h1><p>在跟随up主<a href="https://www.bilibili.com/video/BV1Yb411a7ty?p=1&amp;share_medium=android&amp;share_plat=android&amp;share_source=WEIXIN&amp;share_tag=s_i&amp;timestamp=1635071237&amp;unique_k=kYdWS1">codesheep</a>搭建hexo博客时，在进行到使用hexo d命令部署到github仓库时，输入完账号密码后会弹出如下的错误信息，这是因为github不允许使用账号密码连接了，需要创建自己的token。</p><blockquote><p>Support for password authentication was removed on August 13, 2021. Please use a personal access token instead.</p></blockquote><h1 id="解决方法"><a class="markdownIt-Anchor" href="#解决方法"></a> 解决方法</h1><ol><li><p>生成新SSH</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;yourmail@example.com&quot;</span><br></pre></td></tr></table></figure><p>&quot;<a href="mailto:yourmail@example.com">yourmail@example.com</a>&quot;中填写注册github所用的邮箱。然后会提示生成路径，记住路径并一路回车（也可以自己输入路径），在相应的路径会生成<code>.ssh</code>和<code>.ssh.pub</code>文件，如果并没有找到的话，可点击<code>Command + Shift +.(句号)</code>来显示隐藏文件。</p><img src="/2022/05/04/hexo%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E6%97%B6%E6%8F%90%E7%A4%BAuse-a-personal-access-token-instead%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/1.jpg" class="" width="1"></li><li><p>绑定SSH</p><p>登陆<code>Github</code>，依次点击<code>右上角头像框</code>-&gt;<code>Settings</code>-&gt; <code>SSH and GPG keys</code>-&gt;<code>New SSH key</code>，在其中输入相应的信息。</p></li></ol><img src="/2022/05/04/hexo%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E6%97%B6%E6%8F%90%E7%A4%BAuse-a-personal-access-token-instead%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/2.png" class="" width="2"><ol start="3"><li><p>生成自己的token</p><p>在<code>Settings</code>侧边栏依次点击<code>Developer settings</code>-&gt;<code>Personal access tokens</code>-&gt;<code>Generate new token</code>。在设置好名称、有效期与权限后，点击<code>Generate token</code>生成token。复制好生成的token，若关闭界面就再也看不到此token了。</p></li></ol><img src="/2022/05/04/hexo%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E6%97%B6%E6%8F%90%E7%A4%BAuse-a-personal-access-token-instead%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/3.png" class="" width="3"><ol start="4"><li><p>配置config</p><p>打开<code>blog</code>文件夹中的<code>_config.yml</code>文件，找到<code>deploy</code>一栏，将<code>repo</code>改写成<code>https://你的token@github.com/xxxxx</code>的格式即可。</p><img src="/2022/05/04/hexo%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E6%97%B6%E6%8F%90%E7%A4%BAuse-a-personal-access-token-instead%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/4.jpg" class="" width="4"></li></ol><h1 id="参考文献"><a class="markdownIt-Anchor" href="#参考文献"></a> 参考文献</h1><p><a href="https://blog.csdn.net/qq934235475/article/details/119794518">https://blog.csdn.net/qq934235475/article/details/119794518</a></p><p><a href="https://www.jianshu.com/p/6e86c80c457c">https://www.jianshu.com/p/6e86c80c457c</a></p>]]></content>
       
       
+      <categories>
+          
+          <category> hexo博客 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> hexo </tag>
+            
+        </tags>
       
     </entry>
     
